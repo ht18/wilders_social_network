@@ -1,0 +1,161 @@
+.content {
+  display: flex;
+}
+.sidebarContainer {
+  display: none;
+}
+
+.postsContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.publishPostContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.publishPostContainer > h3 {
+  background-color: gray;
+  color: #fff;
+  padding: 3%;
+  margin-bottom: 2%;
+  width: 90%;
+  border-radius: 10px 0 10px 0;
+}
+
+.publishForm {
+  width: 90%;
+  background-color: #fff;
+  color: #808080;
+  padding: 3%;
+  border-radius: 0 10px 0 10px;
+  border-left: 1em groove #808080;
+  border-bottom: 1em solid #808080;
+}
+
+.publishForm > .labels > label{
+  color:#808080;
+  font-size: 1.5em;
+} 
+
+.publishForm > .labels{
+  padding-bottom: 3%;
+}
+.postFormContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.postFormContainer > .labels {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+}
+
+.postsList {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+#postsNbr{
+  width: 100%;
+  text-align: center;
+}
+
+.postsListContainer {
+  width: 100%;
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  list-style: none;
+  padding: 5%;
+  background-color: #f76c6c;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.postsContent{
+  display: flex;
+}
+.postContent {
+  display: flex;
+  flex-direction: column;
+  align-items: justify;
+  width: 100%;
+  list-style: none;
+  background-color: lightgray;
+  margin-bottom: 3%;
+  padding: 3% 2% 3% 2%;
+  border-radius: 0 0 10px 10px;
+  padding: 6% 5% 6% 5%;
+  flex-wrap: wrap;
+  min-height: 10%;
+}
+
+.postContent > li {
+  width: 100%;
+  display: flex;
+  word-wrap: wrap;
+  max-height: 10%;
+  overflow: visible;
+}
+
+.profileContainer {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebarContainer {
+    display: initial;
+    width: 25%;
+    height: 100%;
+  }
+
+  .cats img {
+    height:200px;
+  }
+
+  .publishPostContainer {
+    width: 90%;
+  }
+  .publishPostContainer > h3{
+    width: 100%;
+  }
+
+  .publishForm{
+    width: 100%;
+  }
+
+
+.postsList {
+  display: flex;
+  width: 90%;
+}
+
+  .postsListContainer {
+    width: 100%;
+    min-height: 300px;
+    gap: 3%;
+    justify-content: center;
+  }
+}

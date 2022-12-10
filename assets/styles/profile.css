@@ -1,0 +1,25 @@
+.profileContent {
+  height: 100%;
+  width: 100%;
+}
+
+.profileContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 93%;
+  position: absolute;
+  top: 7%;
+}
+
+.profilePost{
+  width: 100%;
+}
+
+.profileContainer{
+  display: grid;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}

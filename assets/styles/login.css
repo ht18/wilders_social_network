@@ -1,0 +1,74 @@
+.loginContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  width: 70%;
+  height: 70%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form {
+  height: 50%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f76c6c ;
+  padding: 3%;
+  border-radius: 10px;
+  align-items: space-between;
+}
+
+.labels {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form > .labels > label {
+    padding-bottom: 5%;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.labels > input {
+    height: 45%;
+    border-radius: 10px;
+}
+
+button{
+    height: 15%;
+    border-radius: 10px;
+    border: 0 solid white;
+    font-size: 1em;
+}
+
+button:hover{
+    background-color:bisque;
+}
+
+
+@media screen and (min-width: 412px) {
+    .form {
+        height: 50%;
+        width: 80%;
+    }
+  }
+
+@media screen and (min-width: 768px) {
+    .form {
+        height: 60%;
+        width: 60%;
+    }
+  }

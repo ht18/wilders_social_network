@@ -1,0 +1,31 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+/migrations/
+###< symfony/framework-bundle ###
+
+.env
+
+/src/DataFixtures/
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+
+/src/profilePic
+/templates/forum_post/
+/templates/login/
+/templates/logout/
+/templates/news_post/
+/templates/profile/
+/templates/registration/
+/templates/security/
