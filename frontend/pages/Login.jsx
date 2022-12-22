@@ -1,11 +1,11 @@
-import Header from "./Header";
+import Header from "../components/Header";
 import "../styles/login.css";
 import "../styles/app.css";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import { Auth } from "../contexts/Auth";
 import { useNavigate } from "react-router-dom";
 

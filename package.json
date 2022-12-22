@@ -39,7 +39,7 @@
     "js-cookie": "^3.0.1",
     "prettier": "^2.7.1",
     "react-hook-form": "^7.39.4",
-    "react-router-dom": "^6.4.3"
+    "react-router-dom": "^6.6.0"
   },
   "browser": {
     "fs": false,

@@ -6,7 +6,6 @@ import Profile from "./Profile";
 import Login from "./Login";
 import PostDetail from "./PostDetail";
 import PostDelete from "./PostDelete";
-import Upload from "./Upload";
 import Logout from "./Logout";
 import PostEdit from "./PostEdit";
 import Register from "./Register";
@@ -29,7 +28,6 @@ function Appli() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/upload" element={<Upload />} />
         </Routes>{" "}
       </Router>
     </AuthProvider>
