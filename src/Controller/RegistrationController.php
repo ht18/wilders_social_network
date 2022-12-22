@@ -32,6 +32,9 @@ class RegistrationController extends AbstractController
                     $form['plainPassword']
                 )
             );
+            $user->setImageName($form['imageName']);
+            $user->setImageSize($form['imageSize']);
+            $user->setUpdatedAt($form['updatedAt']);
             $userRepository->save($user, true);
             $entityManager->persist($user);
             $entityManager->flush();

@@ -21,7 +21,6 @@ function PostForm() {
     };
     const endpoint = "https://127.0.0.1:8000/api/news/";
     await axios.get(endpoint, { headers }).then((posts) => {
-      console.log(posts.data);
       setPostsList(posts.data);
     });
   }
@@ -44,12 +43,10 @@ function PostForm() {
 
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setGoodRequest("Your post has been sent");
         navigate("/posts");
       })
       .catch(function (error) {
-        console.log(error);
         setError(error.response.data.error);
       });
   }

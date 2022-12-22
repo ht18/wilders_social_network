@@ -5,8 +5,6 @@ import "../styles/header.css";
 
 function Header() {
   const { isAuth, setIsAuth } = useContext(Auth);
-
-  console.log(isAuth);
   return (
     <div className="headerContainer">
       <nav className="navbar">

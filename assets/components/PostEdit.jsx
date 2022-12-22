@@ -27,12 +27,9 @@ function PostEdit() {
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setPost(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }, []);
 
   async function handleSubmit(event) {
@@ -54,13 +51,10 @@ function PostEdit() {
 
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         getPosts();
         navigate("/posts");
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }
 
   async function getPosts() {
@@ -69,7 +63,6 @@ function PostEdit() {
     };
     const endpoint = "https://127.0.0.1:8000/api/news/";
     await axios.get(endpoint, { headers }).then((posts) => {
-      console.log(posts.data);
       setPostsList(posts.data);
     });
   }

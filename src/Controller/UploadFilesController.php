@@ -15,6 +15,7 @@ class UploadFilesController extends AbstractController
 
         if (isset($_FILES['file'])) {
             $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
             $route = $this->getParameter('APP_ROUTE');
             $uniqid = pathinfo($file_name, PATHINFO_FILENAME) . uniqid();
             $extension = pathinfo($file_name, PATHINFO_EXTENSION);
@@ -30,7 +31,7 @@ class UploadFilesController extends AbstractController
             }
             if ($_FILES['file']['error'] === 0) {
                 move_uploaded_file($tmp_file_name, $new_file_name);
-                return new JsonResponse(['id' => 0, 'data' => 'Uploaded successfully', 'name' => basename($uniqid) . '.' . $extension]);
+                return new JsonResponse(['id' => 0, 'data' => 'Uploaded successfully', 'path' => 'src/uploads/user_picture/', 'size' => $file_size, 'name' => basename($uniqid) . '.' . $extension]);
             } else {
                 return new JsonResponse(['id' => 1, 'data' => 'Failed to upload file']);
             }

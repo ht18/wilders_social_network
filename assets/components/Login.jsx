@@ -35,7 +35,6 @@ function Login() {
     };
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.status));
         if (response.status === 200) {
           window.localStorage.setItem("token", "yes");
           if (window.localStorage.getItem("token") === "yes") {
@@ -45,7 +44,6 @@ function Login() {
         }
       })
       .catch(function (error) {
-        console.log(error);
         setError(error);
       });
   }

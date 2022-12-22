@@ -6,7 +6,6 @@ function Upload() {
   useEffect(() => {
     uploadFile();
   }, [myFile]);
-  useEffect(() => console.log(msg), [msg]);
 
   function setFile(event) {
     document.getElementById("mfile").click();
@@ -30,7 +29,11 @@ function Upload() {
       requestOptions
     )
       .then((response) => response.json())
-      .then((result) => setMsg(result))
+      .then((result) => {
+        setMsg(result);
+        window.localStorage.setItem("image_name", result.name);
+        window.localStorage.setItem("image_size", result.size);
+      })
       .catch((error) => console.log("error", error));
   }
   return (

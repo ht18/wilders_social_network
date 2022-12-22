@@ -21,13 +21,9 @@ function ProfileContent() {
 
     await axios(config)
       .then(function (response) {
-        console.log(response.data);
         setProfile(response.data);
-        console.log(profile);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }
   return (
     <div className="profileContainer">

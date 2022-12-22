@@ -3,7 +3,8 @@ import "../styles/login.css";
 import "../styles/app.css";
 import axios from "axios";
 import Footer from "./Footer";
-import React, { useState } from "react";
+import Upload from "./Upload";
+import React, { useEffect, useState } from "react";
 import "../styles/register.css";
 import { useNavigate } from "react-router-dom";
 
@@ -11,35 +12,37 @@ function Register() {
   const [email, setEmail] = useState("");
   const [plainPassword, setPlainPassword] = useState("");
   const [pseudo, setPseudo] = useState("");
-
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const image_name = window.localStorage.getItem("image_name");
+    const image_size = window.localStorage.getItem("image_size");
+    const time = new Date().toDateString();
+
     let data = JSON.stringify({
       email: email,
       plainPassword: plainPassword,
       pseudo: pseudo,
-      imageFile: null,
+      imageName: image_name,
+      updatedAt: time,
+      imageSize: image_size,
     });
 
     var config = {
       method: "post",
       url: "https://127.0.0.1:8000/api/users",
       headers: {
-        "Content-Type": "Content-Type': 'application/json",
+        "Content-Type": "application/json",
       },
       data: data,
     };
 
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         navigate("/login");
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }
 
   return (
@@ -77,11 +80,7 @@ function Register() {
               required
             />
           </div>
-          <div className="labels">
-            <label htmlFor="imageFile">Profile Picture</label>
-            <input id="imageFile" type="file" name="imageFile" />
-          </div>
-
+          <Upload />
           <button onClick={handleSubmit} type="submit">
             Sign up
           </button>
