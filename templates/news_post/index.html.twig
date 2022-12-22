@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewsPost index
+{% endblock %}
+
+{% block body %}
+	{{ include('/_header.html.twig') }}
+
+	{{ include('/_logout.html.twig') }}
+	<h1>NewsPost index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Pseudo</th>
+				<th>Picture</th>
+				<th>Topic</th>
+				<th>Content</th>
+				<th>ContentImg</th>
+				<th>Likes</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for news_post in news_posts %}
+				<tr>
+					<td>{{ news_post.id }}</td>
+					<td>{{ news_post.Pseudo }}</td>
+					<td class="picturePost">
+						<img src={{ news_post.Picture}}>
+					</td>
+					<td>{{ news_post.Topic }}</td>
+					<td>{{ news_post.Content }}</td>
+					<td>{{ news_post.ContentImg }}</td>
+					<td>{{ news_post.Likes }}</td>
+					<td>
+						<a href="{{ path('app_news_post_show', {'id': news_post.id}) }}">show</a>
+						<a href="{{ path('app_news_post_edit', {'id': news_post.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_news_post_new') }}">Create new</a>
+{% endblock %}

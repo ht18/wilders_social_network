@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile
+{% endblock %}
+
+{% block body %}
+	{{ include('/_header.html.twig') }}
+
+	{{ include('/_logout.html.twig') }}
+	<h1>Your Profile</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Pseudo</th>
+				<th>Email</th>
+				<th>Profile Picture</th>
+				<th>Password</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{app.user.pseudo}}</td>
+				<td>{{app.user.email}}</td>
+				<td>{{app.user.profilePic}}</td>
+				<td>You can't see it, but you can change it :)</td>
+				<td>
+					<a href="{{ path('app_profile_edit', {'id': app.user.userIdentifier}) }}">edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

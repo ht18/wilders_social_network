@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewsPost
+{% endblock %}
+
+{% block body %}
+	<h1>NewsPost</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ news_post.id }}</td>
+			</tr>
+			<tr>
+				<th>Pseudo</th>
+				<td>{{ news_post.Pseudo }}</td>
+			</tr>
+			<tr>
+				<th>Picture</th>
+				<td class="picturePost">
+					<img src={{ news_post.Picture}}>
+				</td>
+			</tr>
+			<tr>
+				<th>Topic</th>
+				<td>{{ news_post.Topic }}</td>
+			</tr>
+			<tr>
+				<th>Content</th>
+				<td>{{ news_post.Content }}</td>
+			</tr>
+			<tr>
+				<th>ContentImg</th>
+				<td>{{ news_post.ContentImg }}</td>
+			</tr>
+			<tr>
+				<th>Likes</th>
+				<td>{{ news_post.Likes }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_news_post_index') }}">back to list</a>
+
+	<a href="{{ path('app_news_post_edit', {'id': news_post.id}) }}">edit</a>
+
+	{{ include('news_post/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit NewsPost
+{% endblock %}
+
+{% block body %}
+
+	<h1>Edit NewsPost</h1>
+	{% if (app.user.userIdentifier == news_post.Pseudo)  %}
+		{{ include('news_post/_form_edit.html.twig', {'button_label': 'Update'}) }}
+
+		<a href="{{ path('app_news_post_index') }}">back to list</a>
+
+		{{ include('news_post/_delete_form.html.twig') }}
+	{% else %}
+		<h1>
+			You're not the right user
+		</h1>
+		<a href="{{ path('app_news_post_index') }}">Go back</a>
+
+	{% endif %}
+{% endblock %}
