@@ -21,7 +21,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 
-/src/profilePic
+src/uploads/user_picture/
 /templates/forum_post/
 /templates/login/
 /templates/logout/
