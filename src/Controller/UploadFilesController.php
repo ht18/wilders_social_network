@@ -2,33 +2,40 @@
 
 namespace App\Controller;
 
-use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use App\Entity\User;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UploadFilesController extends AbstractController
 {
-    #[Route('/upload/profilePic', name: 'app_upload_files', methods: ['GET', 'POST'])]
-    public function index(ManagerRegistry $doctrine, Request $request): Response
+    #[Route('/api/uploads/user_picture', name: 'app_upload_files', methods: ['POST'])]
+    public function index(): JsonResponse
     {
-        /** @var UploadedFile $uploadedFile */
-        $uploadedFile = $request->files->get('imageFile');
-        $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
-        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $uploadedFile->move(
-            $destination,
-            $originalFilename
-        );
-        $file = new UploadedFile($destination, $originalFilename);
-        dd($file);
-        $user = $this->getUser()->getUserIdentifier();
-        $userRepo =  $doctrine->getRepository(User::class)->findOneBy(['email' => $user]);
+        header('Access-Control-Allow-Origin: *');
 
-        return new Response('Ok', 200, ['Content-Type' => 'multipart/form-data']);
+        if (isset($_FILES['file'])) {
+            $file_name = $_FILES['file']['name'];
+            $route = $this->getParameter('APP_ROUTE');
+            $uniqid = pathinfo($file_name, PATHINFO_FILENAME) . uniqid();
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+            $new_file_name = $route . "src/uploads/user_picture/" . basename($uniqid) . '.' . $extension;
+            $tmp_file_name = $_FILES['file']['tmp_name'];
+            $authorizedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            $maxFileSize = 1000000;
+            if ((!in_array($extension, $authorizedExtensions))) {
+                return new JsonResponse(['id' => 3, 'data' => 'Please select jpg, jpeg, png or gif']);
+            }
+            if (file_exists($_FILES['file']['tmp_name']) && filesize($_FILES['file']['tmp_name']) > $maxFileSize) {
+                return new JsonResponse(['id' => 4, 'data' => 'Please select a file size smaller than 1M.']);
+            }
+            if ($_FILES['file']['error'] === 0) {
+                move_uploaded_file($tmp_file_name, $new_file_name);
+                return new JsonResponse(['id' => 0, 'data' => 'Uploaded successfully', 'name' => basename($uniqid) . '.' . $extension]);
+            } else {
+                return new JsonResponse(['id' => 1, 'data' => 'Failed to upload file']);
+            }
+        } else {
+            return new JsonResponse(['id' => 2, 'data' => 'No file selected']);
+        }
     }
 }

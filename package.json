@@ -6,6 +6,7 @@
     "@hotwired/stimulus": "^3.0.0",
     "@symfony/stimulus-bridge": "^3.2.0",
     "@symfony/webpack-encore": "^4.0.0",
+    "@types/node": "^18.11.17",
     "axios": "^1.2.1",
     "core-js": "^3.23.0",
     "eslint": "^8.28.0",
@@ -33,9 +34,16 @@
     "@babel/plugin-transform-runtime": "^7.19.6",
     "cors": "^2.8.5",
     "eslint-config-airbnb": "^19.0.4",
+    "file-system": "^1.2.2",
+    "fs": "^0.0.1-security",
     "js-cookie": "^3.0.1",
     "prettier": "^2.7.1",
     "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.3"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
