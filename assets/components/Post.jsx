@@ -4,7 +4,6 @@ import axios from "axios";
 
 function Post({ post }) {
   const [likes, setLikes] = useState(post.likes);
-  console.log(likes);
   async function likeClick(event) {
     event.preventDefault();
     setLikes(likes + 1);
@@ -25,12 +24,8 @@ function Post({ post }) {
     };
 
     await axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .then(function (response) {})
+      .catch(function (error) {});
   }
 
   return (

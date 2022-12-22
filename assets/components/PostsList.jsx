@@ -15,7 +15,6 @@ function PostsList() {
     };
     const endpoint = "https://127.0.0.1:8000/api/news/";
     axios.get(endpoint, { headers }).then((posts) => {
-      console.log(posts.data);
       setPostsList(posts.data);
     });
   }

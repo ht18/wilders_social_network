@@ -11,8 +11,6 @@ function PostDetail() {
   const [post, setPost] = useState([]);
   const { id } = useParams();
 
-  console.log(post);
-
   useEffect(() => {
     const config = {
       method: "get",
@@ -23,12 +21,9 @@ function PostDetail() {
     };
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setPost(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }, []);
 
   return (

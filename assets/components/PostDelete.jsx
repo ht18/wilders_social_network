@@ -17,12 +17,9 @@ function PostDelete() {
 
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         axios.get("https://127.0.0.1:8000/api/news/");
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }
 
   handleSubmit();
