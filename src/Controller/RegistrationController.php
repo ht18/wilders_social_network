@@ -7,37 +7,54 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/api/users', name: 'app_register', methods: ['POST'])]
-    public function register(ValidatorInterface $validator, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): JsonResponse
     {
         $user = new User();
         $form = json_decode($request->getContent(), true);
-        $errors = $validator->validate($form);
-        if (!count($errors)) {
-            $user->setPseudo($form['pseudo']);
-            $user->setEmail($form['email']);
+        $errors = [];
+        $pseudo = $form['pseudo'];
+        $email = $form['email'];
+        $password = $form['plainPassword'];
+        $updatedAt = $form['updatedAt'];
+        $imageName = $form['imageName'];
+        $imageSize = $form['imageSize'];
+
+        if (strlen($pseudo) < 3 || strlen($pseudo) > 100) {
+            array_push($errors, [0 => 'Pseudo should be between 2 and 100']);
+        }
+
+        if (strlen($password) < 7 || strlen($pseudo) > 100) {
+            array_push($errors, [1 => 'Password should be between 6 and 100']);
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            array_push($errors, [2 => 'This is not an email']);
+        }
+
+        if (!$errors) {
+            $user->setPseudo($pseudo);
+            $user->setEmail($email);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form['plainPassword']
+                    $password
                 )
             );
-            $user->setImageName($form['imageName']);
-            $user->setImageSize($form['imageSize']);
-            $user->setUpdatedAt($form['updatedAt']);
+            $user->setImageName($imageName);
+            $user->setImageSize($imageSize);
+            $user->setUpdatedAt($updatedAt);
             $userRepository->save($user, true);
             $entityManager->persist($user);
             $entityManager->flush();
-            return new Response('Ok', 200, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['id' => 0, 'data' => 'Your account has been created', 'errors' => false]);
         }
-
-        return new Response('not ok', 400, ['Content-Type' => 'application/json']);
+        return new JsonResponse(['id' => 1, 'data' => $errors, 'errors' => true]);
     }
 }

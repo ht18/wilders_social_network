@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/news')]
@@ -39,25 +40,44 @@ class NewsPostController extends AbstractController
     }
 
     #[Route('/new', name: 'news_id', methods: ['GET', 'POST'])]
-    public function new(Request $request, ManagerRegistry $doctrine, UserRepository $userRepo, NewsPostRepository $newsPostRepository): Response
+    public function new(Request $request, ManagerRegistry $doctrine, UserRepository $userRepo, NewsPostRepository $newsPostRepository): JsonResponse
     {
         $newsPost = new NewsPost();
+        $errors = [];
         $form = json_decode($request->getContent(), true);
+
         $user = $this->getUser()->getUserIdentifier();
         $userRepo =  $doctrine->getRepository(User::class)->findOneBy(['email' => $user]);
         $pseudo = $userRepo->getPseudo();
-        $newsPost->setPseudo($pseudo);
-        $newsPost->setPicture('');
-        $newsPost->setTopic($form['topic']);
-        $newsPost->setContent($form['content']);
-        $newsPost->setPictureSize($form['pictureSize']);
-        $newsPost->setPicture($form['picture']);
-        $newsPost->setLikes(0);
-        if ($form) {
+        $topic = $form['topic'];
+        $content = $form['content'];
+        $pictureSize = $form['pictureSize'];
+        $picture = $form['picture'];
+
+        if (strlen($topic) < 2 || strlen($topic) > 255) {
+            array_push($errors, [0 => 'Please insert a topic']);
+        }
+
+        if (strlen($content) < 2) {
+            array_push($errors, [1 => 'You cannot publish an empty content']);
+        }
+
+        if (!$errors) {
+            $newsPost->setPseudo($pseudo);
+            $newsPost->setTopic($topic);
+            $newsPost->setContent($content);
+            $newsPost->setLikes(0);
             $newsPostRepository->save($newsPost, true);
-            return new Response('Ok', 200, ['Content-Type' => 'application/json']);
+            if ($picture === "undefined" || $pictureSize === "undefined") {
+                $newsPost->setPictureSize(null);
+                $newsPost->setPicture(null);
+            } else {
+                $newsPost->setPictureSize($pictureSize);
+                $newsPost->setPicture($picture);
+            }
+            return new JsonResponse(['id' => 0, 'data' => 'Your post has been created', 'errors' => false]);
         } else {
-            return new Response('not ok', 400, ['Content-Type' => 'application/json']);
+            return new JsonResponse(['id' => 1, 'data' => $errors, 'errors' => true]);
         }
     }
 
@@ -70,9 +90,9 @@ class NewsPostController extends AbstractController
                 'id' => $post->getId(),
                 'pseudo' => $post->getPseudo(),
                 'picture' => $post->getPicture(),
+                'pictureSize' => $post->getPictureSize(),
                 'topic' => $post->getTopic(),
                 'content' => $post->getContent(),
-                'content_img' => $post->getContentImg(),
                 'likes' => $post->getLikes(),
             ];
             return new Response(json_encode($postsArray), 200, ['Content-Type' => 'application/json']);
@@ -81,8 +101,9 @@ class NewsPostController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_news_post_edit', methods: ['GET', 'POST'])]
-    public function edit(ManagerRegistry $doctrine, $id, NewsPostRepository $newsPostRepository, Request $request): Response
+    public function edit(ManagerRegistry $doctrine, $id, NewsPostRepository $newsPostRepository, Request $request): JsonResponse
     {
+        $errors = [];
         $entityManager = $doctrine->getManager();
         $post =  $doctrine->getRepository(NewsPost::class)->find($id);
         $topic = $post->getTopic();
@@ -92,32 +113,40 @@ class NewsPostController extends AbstractController
         $user = $this->getUser()->getUserIdentifier();
         $userRepo =  $doctrine->getRepository(User::class)->findOneBy(['email' => $user]);
         $pseudo = $userRepo->getPseudo();
-        if ($post && $pseudo === $post->getPseudo()) {
-            $form = json_decode($request->getContent(), true);
-            if ($form) {
-                $post->setPicture('');
-                if ($form['topic']) {
-                    $post->setTopic($form['topic']);
-                } else {
-                    $post->setTopic($topic);
-                }
-                if ($form['content']) {
-                    $post->setContent($form['content']);
-                } else {
-                    $post->setContent($content);
-                }
-                if ($form['likes']) {
-                    $post->setLikes($form['likes']);
-                } else {
-                    $post->setLikes($likes);
-                    $post->setContentImg('test');
-                }
 
-                $newsPostRepository->save($post, true);
-                return new Response('Ok', 200, ['Content-Type' => 'application/json']);
+        $form = json_decode($request->getContent(), true);
+        $topicForm = $form['topic'];
+        $contentForm = $form['content'];
+        $likesForm = $form['likes'];
+
+        if (strlen($topicForm) < 2 || strlen($topicForm) > 255) {
+            array_push($errors, [0 => 'Please insert a topic']);
+        }
+
+        if (strlen($content) < 2) {
+            array_push($errors, [1 => 'You cannot publish an empty content']);
+        }
+
+        if ($post && $pseudo === $post->getPseudo() && !$errors) {
+            if ($topicForm) {
+                $post->setTopic($topicForm);
             } else {
-                return new Response('not ok', 400, ['Content-Type' => 'application/json']);
+                $post->setTopic($topic);
             }
+            if ($contentForm) {
+                $post->setContent($contentForm);
+            } else {
+                $post->setContent($content);
+            }
+            if ($likesForm) {
+                $post->setLikes($likesForm);
+            } else {
+                $post->setLikes($likes);
+            }
+            $newsPostRepository->save($post, true);
+            return new JsonResponse(['id' => 0, 'data' => 'Your post has been updated', 'errors' => false]);
+        } else {
+            return new JsonResponse(['id' => 1, 'data' => $errors, 'errors' => true]);
         }
         return new Response('bad request', 400, ['Content-Type' => 'application/json']);
     }

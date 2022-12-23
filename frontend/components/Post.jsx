@@ -34,14 +34,13 @@ function Post({ post }) {
         <div className="postHeader">
           <li>id : {post.id}</li>
           <li>pseudo : {post.pseudo}</li>
-          <li>{post.picture}</li>
           <li>{post.name}</li>
           <li>{post.topic}</li>
         </div>
       </Link>
       <div className="postContent">
         <li>{post.content}</li>
-        <li>{post.contentImg}</li>
+        <li>{post.picture}</li>
         <li>{likes}</li>
       </div>
       <button type="button" onClick={likeClick}>

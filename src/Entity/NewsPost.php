@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\NewsPostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NewsPostRepository::class)]
 class NewsPost
@@ -18,15 +17,13 @@ class NewsPost
     #[ORM\Column(length: 255)]
     private ?string $Pseudo = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Picture = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotNull]
     private ?string $Topic = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotNull]
     private ?string $Content = null;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -58,7 +55,7 @@ class NewsPost
         return $this->Picture;
     }
 
-    public function setPicture(string $Picture): self
+    public function setPicture(?string $Picture): self
     {
         $this->Picture = $Picture;
 
