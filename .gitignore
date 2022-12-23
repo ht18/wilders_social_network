@@ -21,3 +21,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 src/uploads/user_picture/
+src/uploads/posts_picture/
