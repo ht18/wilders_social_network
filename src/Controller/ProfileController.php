@@ -34,7 +34,7 @@ class ProfileController extends AbstractController
                 'picture' => $post->getPicture(),
                 'topic' => $post->getTopic(),
                 'content' => $post->getContent(),
-                'content_img' => $post->getContentImg(),
+                'pictureSize' => $post->getPictureSize(),
                 'likes' => $post->getLikes(),
             );
             array_push($postsArray, $newArray);

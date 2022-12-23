@@ -9,6 +9,7 @@ function PostForm() {
   const [goodRequest, setGoodRequest] = useState("");
   const [error, setError] = useState("");
   const [postsList, setPostsList] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -48,8 +49,11 @@ function PostForm() {
 
     await axios(config)
       .then(function (response) {
-        setGoodRequest("Your post has been sent");
-        navigate("/posts");
+        if (response.data.errors === false) {
+          setGoodRequest("Your post has been sent");
+          navigate("/posts");
+        }
+        setErrors([response.data.data[0][0], response.data.data[1][1]]);
       })
       .catch(function (error) {
         setError(error.response.data.error);
@@ -69,6 +73,7 @@ function PostForm() {
             onChange={(e) => setTopic(e.target.value)}
             required
           />
+          <li>{errors[0]}</li>
         </div>
 
         <div className="labels">
@@ -80,6 +85,7 @@ function PostForm() {
             onChange={(e) => setContent(e.target.value)}
             required
           />
+          <li>{errors[1]}</li>
         </div>
         <Upload dir="posts_picture" />
         <input type="submit" value="Submit" />
