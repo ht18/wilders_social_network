@@ -1,10 +1,10 @@
-import Header from "./Header";
+import Header from "../components/Header";
 import "../styles/login.css";
 import "../styles/app.css";
 import axios from "axios";
-import Footer from "./Footer";
-import Upload from "./Upload";
-import React, { useEffect, useState } from "react";
+import Footer from "../components/Footer";
+import Upload from "../components/Upload";
+import React, { useState } from "react";
 import "../styles/register.css";
 import { useNavigate } from "react-router-dom";
 
@@ -80,7 +80,7 @@ function Register() {
               required
             />
           </div>
-          <Upload />
+          <Upload dir="user_picture" />
           <button onClick={handleSubmit} type="submit">
             Sign up
           </button>

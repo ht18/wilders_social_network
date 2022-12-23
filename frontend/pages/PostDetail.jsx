@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Post from "./Post";
-import Header from "./Header";
-import Footer from "./Footer";
+import Post from "../components/Post";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "../styles/postDetail.css";
 import "../styles/content.css";
 

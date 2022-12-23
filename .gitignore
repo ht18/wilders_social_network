@@ -20,12 +20,5 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-
 src/uploads/user_picture/
-/templates/forum_post/
-/templates/login/
-/templates/logout/
-/templates/news_post/
-/templates/profile/
-/templates/registration/
-/templates/security/
+src/uploads/posts_picture/

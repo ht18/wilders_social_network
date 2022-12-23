@@ -3,16 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\NewsPostRepository;
-use ApiPlatform\Metadata\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\DBAL\Types\Types;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NewsPostRepository::class)]
-#[ApiResource()]
 class NewsPost
 {
     #[ORM\Id]
@@ -21,26 +16,21 @@ class NewsPost
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-
     private ?string $Pseudo = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-
+    #[ORM\Column(length: 255)]
     private ?string $Picture = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotNull]
-
     private ?string $Topic = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotNull]
-
     private ?string $Content = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-
-    private ?string $ContentImg = null;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $pictureSize = null;
 
     #[ORM\Column(nullable: true)]
 
@@ -99,14 +89,14 @@ class NewsPost
         return $this;
     }
 
-    public function getContentImg(): ?string
+    public function getpictureSize(): ?int
     {
-        return $this->ContentImg;
+        return $this->pictureSize;
     }
 
-    public function setContentImg(?string $ContentImg): self
+    public function setPictureSize(?string $pictureSize): self
     {
-        $this->ContentImg = $ContentImg;
+        $this->pictureSize = $pictureSize;
 
         return $this;
     }

@@ -30,7 +30,7 @@ class NewsPostController extends AbstractController
                 'picture' => $post->getPicture(),
                 'topic' => $post->getTopic(),
                 'content' => $post->getContent(),
-                'content_img' => $post->getContentImg(),
+                'picture_size' => $post->getPictureSize(),
                 'likes' => $post->getLikes(),
             ];
             array_push($postsArray, $newArray);
@@ -50,7 +50,8 @@ class NewsPostController extends AbstractController
         $newsPost->setPicture('');
         $newsPost->setTopic($form['topic']);
         $newsPost->setContent($form['content']);
-        $newsPost->setContentImg('test');
+        $newsPost->setPictureSize($form['pictureSize']);
+        $newsPost->setPicture($form['picture']);
         $newsPost->setLikes(0);
         if ($form) {
             $newsPostRepository->save($newsPost, true);

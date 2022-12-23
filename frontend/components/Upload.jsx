@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Upload() {
+function Upload({ dir }) {
   const [myFile, setMyfile] = useState({});
   const [msg, setMsg] = useState("");
   useEffect(() => {
@@ -24,10 +24,7 @@ function Upload() {
     };
     console.log(formdata);
 
-    await fetch(
-      "https://127.0.0.1:8000/api/uploads/user_picture",
-      requestOptions
-    )
+    await fetch(`https://127.0.0.1:8000/api/uploads/${dir}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setMsg(result);
