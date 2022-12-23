@@ -15,6 +15,7 @@ This project is a personal project, additionally to my three school projects. Ma
 `* SensioFrameworkExtra Bundle`
 `* Framework Bundle`
 `* Symfony Flex`
+`* Lexik JWT Authentication`
 `* (Twig Bundle in the first place)`
 
 * JavaScript/React
@@ -31,7 +32,7 @@ I am creating a social network for wilders (students of my current school, Wild 
 On what you can see now there are some problems, I need to solve in the next weeks.
 
 - the site design as you can see
-- the check of values that are posted in database. I found some ideas to do that, I'm working on It (my priority).
+- ✅ the check of values that are posted in database. I found some ideas to do that, I'm working on It (my priority).
 
 I also want to add new features :
 
