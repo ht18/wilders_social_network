@@ -27,15 +27,15 @@ class RegistrationController extends AbstractController
         $imageSize = $form['imageSize'];
 
         if (strlen($pseudo) < 3 || strlen($pseudo) > 100) {
-            array_push($errors, [0 => 'Pseudo should be between 2 and 100']);
+            array_push($errors, 'Pseudo should be between 2 and 100');
         }
 
         if (strlen($password) < 7 || strlen($pseudo) > 100) {
-            array_push($errors, [1 => 'Password should be between 6 and 100']);
+            array_push($errors, 'Password should be between 6 and 100');
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            array_push($errors, [2 => 'This is not an email']);
+            array_push($errors, 'This is not an email');
         }
 
         if (!$errors) {

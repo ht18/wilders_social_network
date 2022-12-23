@@ -36,8 +36,8 @@ function Login() {
     await axios(config)
       .then(function (response) {
         if (response.status === 200) {
-          window.localStorage.setItem("token", "yes");
-          if (window.localStorage.getItem("token") === "yes") {
+          window.localStorage.setItem("token", response.data.token);
+          if (window.localStorage.getItem("token")) {
             setIsAuth(true);
           }
           navigate("/posts");
