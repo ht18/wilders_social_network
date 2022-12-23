@@ -6,7 +6,7 @@ function PostsContent() {
   return (
     <div className="postsContentContainer">
       <PublishPost />
-      <PostsList />
+      {<PostsList />}
     </div>
   );
 }

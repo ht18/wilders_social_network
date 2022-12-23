@@ -2,8 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Upload from "./Upload";
+import { Editor } from "@tinymce/tinymce-react";
+import { useRef } from "react";
 
 function PostForm() {
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      setContent(editorRef.current.getContent());
+    }
+  };
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
   const [goodRequest, setGoodRequest] = useState("");
@@ -12,6 +20,10 @@ function PostForm() {
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(content);
+  }, [content]);
 
   useEffect(() => {
     getPosts;
@@ -80,13 +92,53 @@ function PostForm() {
           <label htmlFor="content">Content</label>
           <textarea
             name="content"
-            id="content"
+            id="textarea"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+            style={{ display: "none" }}
           />
-          <li>{errors[1]}</li>
         </div>
+        <Editor
+          apiKey="your-api-key"
+          onInit={(evt, editor) => (editorRef.current = editor)}
+          initialValue=""
+          init={{
+            height: "50%",
+            menubar: false,
+            plugins: [
+              "advlist",
+              "autolink",
+              "link",
+              "image",
+              "lists",
+              "charmap",
+              "anchor",
+              "pagebreak",
+              "searchreplace",
+              "wordcount",
+              "visualblocks",
+              "code",
+              "fullscreen",
+              "insertdatetime",
+              "media",
+              "table",
+              "emoticons",
+              "template",
+              "codesample",
+            ],
+            toolbar:
+              "undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify |" +
+              "bullist numlist outdent indent | link image | print preview media fullscreen | " +
+              "forecolor backcolor emoticons",
+            content_style:
+              "body{font-family:Helvetica,Arial,sans-serif; font-size:16px}",
+          }}
+        />
+        <li>{errors[1]}</li>
+        <button style={{ height: "5%" }} onClick={log}>
+          Log editor content
+        </button>
         <Upload dir="posts_picture" />
         <input type="submit" value="Submit" />
         <li>{goodRequest}</li>

@@ -12,12 +12,18 @@
   width: 100%;
 }
 
+#topic{
+  height: 100%;
+  padding-bottom: 3%;
+}
+
 .publishPostContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 80vh;
   padding-top: 5%;
   padding-bottom: 5%;
 }
@@ -33,26 +39,34 @@
 
 .publishForm {
   width: 90%;
+  height: 100%;
   background-color: #fff;
   color: #808080;
   padding: 3%;
   border-radius: 0 10px 0 10px;
   border-left: 1em groove #808080;
   border-bottom: 1em solid #808080;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: scroll;
 }
 
 .publishForm > .labels > label{
   color:#808080;
   font-size: 1.5em;
+  padding-bottom: 3%;
 } 
 
 .publishForm > .labels{
   padding-bottom: 3%;
+  height: 10%
 }
 .postFormContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
 }
 
@@ -122,6 +136,13 @@
   justify-content: space-between;
   width: 100%;
   flex-direction: column;
+}
+
+.uploadContainer{
+  display: flex;
+  flex-direction: column;
+  height: 15%;
+  padding-bottom: 2%;
 }
 
 @media screen and (min-width: 768px) {
