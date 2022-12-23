@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Upload from "./Upload";
 
 function PostForm() {
   const [topic, setTopic] = useState("");
@@ -27,9 +28,13 @@ function PostForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const image_name = window.localStorage.getItem("image_name");
+    const image_size = window.localStorage.getItem("image_size");
     let data = JSON.stringify({
       topic: topic,
       content: content,
+      picture: image_name,
+      pictureSize: image_size,
     });
 
     let config = {
@@ -76,11 +81,7 @@ function PostForm() {
             required
           />
         </div>
-
-        <div className="labels">
-          <label htmlFor="picture">Picture</label>
-          <input type="file" name="picture" id="imageUpload" />
-        </div>
+        <Upload dir="posts_picture" />
         <input type="submit" value="Submit" />
         <li>{goodRequest}</li>
       </form>

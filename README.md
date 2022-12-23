@@ -20,6 +20,7 @@ On what you can see now there are some problems, I need to solve in the next wee
 I also want to add new features :
 
 - as a little algorithm to recommend some posts.
-- a forum section - upload of file
+- a forum section
+- upload of file
 - the capacity to comment posts
 - instant messaging ?

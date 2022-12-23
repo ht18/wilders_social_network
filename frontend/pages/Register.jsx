@@ -80,7 +80,7 @@ function Register() {
               required
             />
           </div>
-          <Upload />
+          <Upload dir="user_picture" />
           <button onClick={handleSubmit} type="submit">
             Sign up
           </button>

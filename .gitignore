@@ -20,5 +20,4 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-
 src/uploads/user_picture/
