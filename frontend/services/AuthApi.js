@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 export default function hasAuthenticated() {
   const { isAuth, setIsAuth } = useContext(Auth);
-  if (window.localStorage.getItem("token") === "yes") {
+  if (window.localStorage.getItem("token")) {
     setIsAuth(true);
   }
 }

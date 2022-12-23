@@ -67,14 +67,14 @@ class NewsPostController extends AbstractController
             $newsPost->setTopic($topic);
             $newsPost->setContent($content);
             $newsPost->setLikes(0);
-            $newsPostRepository->save($newsPost, true);
             if ($picture === "undefined" || $pictureSize === "undefined") {
-                $newsPost->setPictureSize(null);
-                $newsPost->setPicture(null);
+                $newsPost->setPictureSize($pictureSize);
+                $newsPost->setPicture($picture);
             } else {
                 $newsPost->setPictureSize($pictureSize);
                 $newsPost->setPicture($picture);
             }
+            $newsPostRepository->save($newsPost, true);
             return new JsonResponse(['id' => 0, 'data' => 'Your post has been created', 'errors' => false]);
         } else {
             return new JsonResponse(['id' => 1, 'data' => $errors, 'errors' => true]);

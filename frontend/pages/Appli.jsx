@@ -11,7 +11,6 @@ import PostEdit from "./PostEdit";
 import Register from "./Register";
 import PrivateRoutes from "./PrivateRoutes";
 import { AuthProvider } from "../contexts/Auth";
-
 function Appli() {
   return (
     <AuthProvider>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 function Upload({ dir }) {
   const [myFile, setMyfile] = useState({});
   const [msg, setMsg] = useState("");
+
   useEffect(() => {
     uploadFile();
   }, [myFile]);
@@ -11,25 +12,27 @@ function Upload({ dir }) {
     document.getElementById("mfile").click();
     setMyfile(event.target.files[0]);
   }
-
   async function uploadFile() {
-    console.log(myFile);
+    let token = window.localStorage.getItem("token");
 
+    let myHeaders = new Headers();
+    if (token) {
+      myHeaders.append("Authorization", `Bearer ${token}`);
+    }
     let formdata = new FormData();
     formdata.append("file", myFile);
 
     let requestOptions = {
       method: "POST",
+      headers: myHeaders,
       body: formdata,
     };
-    console.log(formdata);
-
     await fetch(`https://127.0.0.1:8000/api/uploads/${dir}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        setMsg(result);
         window.localStorage.setItem("image_name", result.name);
         window.localStorage.setItem("image_size", result.size);
+        setMsg(result);
       })
       .catch((error) => console.log("error", error));
   }

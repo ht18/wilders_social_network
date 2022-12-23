@@ -22,3 +22,6 @@ yarn-error.log
 
 src/uploads/user_picture/
 src/uploads/posts_picture/
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

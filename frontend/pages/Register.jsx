@@ -13,10 +13,21 @@ function Register() {
   const [plainPassword, setPlainPassword] = useState("");
   const [pseudo, setPseudo] = useState("");
   const [errors, setErrors] = useState([]);
+  const [errorEmail, setErrorEmail] = useState();
+  const [errorPseudo, setErrorPseudo] = useState();
+  const [errorPassword, setErrorPassword] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(errors);
+    if (errors.includes("This is not an email")) {
+      setErrorEmail("This is not an email");
+    }
+    if (errors.includes("Pseudo should be between 2 and 100")) {
+      setErrorPseudo("Pseudo should be between 2 and 100");
+    }
+    if (errors.includes("Password should be between 6 and 100")) {
+      setErrorPassword("Password should be between 6 and 100");
+    }
   }, [errors]);
 
   async function handleSubmit(event) {
@@ -49,11 +60,7 @@ function Register() {
         if (response.data.errors === false) {
           navigate("/login");
         }
-        setErrors([
-          response.data.data[0][0],
-          response.data.data[1][1],
-          response.data.data[2][2],
-        ]);
+        setErrors(response.data.data);
       })
       .catch(function (error) {});
   }
@@ -72,7 +79,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <p>{errors[2] && errors[2]}</p>
+            <p>{errorEmail && errorEmail}</p>
           </div>
           <div className="labels">
             <label htmlFor="plainPassword">Password</label>
@@ -83,7 +90,7 @@ function Register() {
               onChange={(e) => setPlainPassword(e.target.value)}
               required
             />
-            <p>{errors[1] && errors[1]}</p>
+            <p>{errorPassword && errorPassword}</p>
           </div>
           <div className="labels">
             <label htmlFor="pseudo">Pseudo</label>
@@ -94,7 +101,7 @@ function Register() {
               onChange={(e) => setPseudo(e.target.value)}
               required
             />
-            <p>{errors[0] && errors[0]}</p>
+            <p>{errorPseudo && errorPseudo}</p>
           </div>
           <Upload dir="user_picture" />
           <button onClick={handleSubmit}>Sign up</button>
