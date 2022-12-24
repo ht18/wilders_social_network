@@ -104,7 +104,7 @@ function PostForm() {
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue=""
           init={{
-            height: "50%",
+            height: "300px",
             menubar: false,
             plugins: [
               "advlist",

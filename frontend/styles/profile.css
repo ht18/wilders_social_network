@@ -41,3 +41,7 @@
 .postsList > ul:last-child{
   padding-bottom: 12%;
 }
+
+.profileContainer > .postsList{
+  width: 70%;
+}
