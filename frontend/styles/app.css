@@ -14,8 +14,16 @@ body,
   padding: 0;
 }
 
+
+#root {
+  --main-bg-color: #f76c6c;
+  --main-background-color:whitesmoke;
+  --main-text-white-color: #fff;
+  --main-background-lightgray: rgb(241, 241, 241);
+}
+
 body {
-  background-color: whitesmoke;
+  background-color: var(--main-background-color);
 }
 
 .postsContainer {
@@ -31,4 +39,8 @@ body {
   position: absolute;
   top: 30%;
   z-index: 0
+}
+
+span{
+  font-weight: bold;
 }

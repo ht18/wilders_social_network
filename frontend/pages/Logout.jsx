@@ -3,7 +3,7 @@ import { Auth } from "../contexts/Auth";
 
 function Logout() {
   const { isAuth, setIsAuth } = useContext(Auth);
-  window.localStorage.setItem("token", "");
+  window.localStorage.removeItem("token", "");
   if (window.localStorage.getItem("token") === "") {
     setIsAuth(false);
   }

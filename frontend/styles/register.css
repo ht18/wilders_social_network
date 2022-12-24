@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f76c6c ;
+  background-color: var(--main-bg-color) ;
   padding: 3%;
   border-radius: 10px;
   align-items: space-between;

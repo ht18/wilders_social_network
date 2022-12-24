@@ -21,3 +21,21 @@
   width: 70%;
   height: 70%;
 }
+
+.postDetailAction{
+  display: flex;
+  justify-content: space-between;
+}
+
+.postDetailAction > a {
+  width: auto;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-white-color);
+  padding: 2%;
+}
+
+.postDetailAction > a:hover {
+  background-color: var(--main-text-white-color);
+  color: var(--main-bg-color);
+  padding: 2%;
+}

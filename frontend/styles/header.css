@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   height: 7%;
-  background-color: #f76c6c;
+  background-color: var(--main-bg-color);
   position: fixed;
 }
 
@@ -22,7 +22,7 @@ a:link {
 
 .navbar a:visited,
 .navbar a:link {
-  color: #fff;
+  color: var(--main-text-white-color);
 }
 
 .navbar li:last-child {
@@ -30,8 +30,8 @@ a:link {
 }
 
 .navbar a:hover {
-  color: #f76c6c;
-  background-color: #fff;
+  color: var(--main-bg-color);
+  background-color: var(--main-text-white-color);
   padding-top: 49%;
   padding-bottom: 49%;
   padding-right: 20%;

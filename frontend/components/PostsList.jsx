@@ -21,7 +21,9 @@ function PostsList() {
 
   return (
     <div className="postsList">
-      <ul id="postsNbr">{postsList.length}</ul>
+      <ul id="postsNbr">
+        <span>{postsList.length} </span>have been pusblished !
+      </ul>
       <ul className="postsListContainer">
         {postsList.map((posts) => (
           <Post key={posts.id} post={posts} />

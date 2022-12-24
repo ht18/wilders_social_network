@@ -22,23 +22,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f76c6c ;
+  background-color: var(--main-bg-color) ;
   padding: 3%;
   border-radius: 10px;
   align-items: space-between;
 }
 
 .labels {
-  height: 30%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.form > .labels {
+  height: 30%;
+}
+
 .form > .labels > label {
     padding-bottom: 5%;
-    color: #fff;
+    color: var(--main-text-white-color);
     font-size: 1.5em;
 }
 

@@ -32,8 +32,10 @@ function PostDetail() {
       <div className="contentPostDetail">
         <div className="postDetailContentContainer">
           <Post key={post.id} post={post} />
-          <Link to={`/posts/${id}/edit`}>Edit</Link>
-          <Link to={`/posts/${id}/delete`}>Delete</Link>
+          <div className="postDetailAction">
+            <Link to={`/posts/${id}/edit`}>Edit</Link>
+            <Link to={`/posts/${id}/delete`}>Delete</Link>
+          </div>
         </div>
         <Footer />
       </div>

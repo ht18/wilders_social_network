@@ -22,8 +22,8 @@ function PostForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(content);
-  }, [content]);
+    console.log(errors);
+  }, [errors]);
 
   useEffect(() => {
     getPosts;
@@ -67,9 +67,7 @@ function PostForm() {
         }
         setErrors([response.data.data[0][0], response.data.data[1][1]]);
       })
-      .catch(function (error) {
-        setError(error.response.data.error);
-      });
+      .catch(function (error) {});
   }
 
   return (
@@ -85,7 +83,7 @@ function PostForm() {
             onChange={(e) => setTopic(e.target.value)}
             required
           />
-          <li>{errors[0]}</li>
+          <li>{errors[0] && errors[0]}</li>
         </div>
 
         <div className="labels">
@@ -100,7 +98,9 @@ function PostForm() {
           />
         </div>
         <Editor
-          apiKey="your-api-key"
+          tinymceScriptSrc={
+            "https://127.0.0.1:8000" + "/tinymce/tinymce.min.js"
+          }
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue=""
           init={{
@@ -136,11 +136,10 @@ function PostForm() {
           }}
         />
         <li>{errors[1]}</li>
-        <button style={{ height: "5%" }} onClick={log}>
-          Log editor content
-        </button>
         <Upload dir="posts_picture" />
-        <input type="submit" value="Submit" />
+        <button style={{ height: "5%" }} onClick={log}>
+          Submit
+        </button>
         <li>{goodRequest}</li>
       </form>
     </div>

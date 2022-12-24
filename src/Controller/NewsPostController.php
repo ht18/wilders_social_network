@@ -123,7 +123,7 @@ class NewsPostController extends AbstractController
             array_push($errors, [0 => 'Please insert a topic']);
         }
 
-        if (strlen($content) < 2) {
+        if (strlen($contentForm) < 2) {
             array_push($errors, [1 => 'You cannot publish an empty content']);
         }
 

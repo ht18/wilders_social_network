@@ -27,9 +27,12 @@ function ProfileContent() {
   }
   return (
     <div className="profileContainer">
-      <h2>Hello {profile.length && profile[0].pseudo} !</h2>
-      <h1>{profile.length && profile[0].email}</h1>
-      <div>
+      <h1>Hello {profile.length && profile[0].pseudo} !</h1>
+      <div className="profileUpdate">
+        <li>Your email is : {profile.length && profile[0].email}</li>
+        <li>Your picture is</li>
+      </div>
+      <div className="postsList">
         {profile.length &&
           profile[1].map((post, index) => (
             <ul className="profilePost" key={index}>

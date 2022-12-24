@@ -5,9 +5,19 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/postEdit.css";
 import "../styles/content.css";
+import PostForm from "../components/PostForm";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
+import { useRef } from "react";
+import Upload from "../components/Upload";
 
 function PostEdit() {
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      setContent(editorRef.current.getContent());
+    }
+  };
   const { id } = useParams();
   const [post, setPost] = useState([]);
   const [topic, setTopic] = useState("");
@@ -34,9 +44,13 @@ function PostEdit() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const image_name = window.localStorage.getItem("image_name");
+    const image_size = window.localStorage.getItem("image_size");
     const data = JSON.stringify({
       topic: topic,
       content: content,
+      picture: image_name,
+      pictureSize: image_size,
       likes: "",
     });
 
@@ -74,6 +88,7 @@ function PostEdit() {
         <div className="postEditContentContainer">
           <div className="postFormContainer">
             <form
+              className="formEdit"
               action="https://127.0.0.1:8000/posts/"
               method="get"
               onSubmit={handleSubmit}
@@ -95,27 +110,62 @@ function PostEdit() {
                 <label htmlFor="content">Content</label>
                 <textarea
                   name="content"
-                  id="content"
+                  id="textareaBis"
                   value={content}
-                  placeholder={post.content}
                   onChange={(e) => setContent(e.target.value)}
+                  required
+                  style={{ display: "none" }}
                 />
               </div>
+              <Editor
+                tinymceScriptSrc={
+                  "https://127.0.0.1:8000" + "/tinymce/tinymce.min.js"
+                }
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                initialValue={post.content}
+                init={{
+                  height: "50%",
+                  menubar: false,
+                  plugins: [
+                    "advlist",
+                    "autolink",
+                    "link",
+                    "image",
+                    "lists",
+                    "charmap",
+                    "anchor",
+                    "pagebreak",
+                    "searchreplace",
+                    "wordcount",
+                    "visualblocks",
+                    "code",
+                    "fullscreen",
+                    "insertdatetime",
+                    "media",
+                    "table",
+                    "emoticons",
+                    "template",
+                    "codesample",
+                  ],
+                  toolbar:
+                    "undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify |" +
+                    "bullist numlist outdent indent | link image | print preview media fullscreen | " +
+                    "forecolor backcolor emoticons",
+                  content_style:
+                    "body{font-family:Helvetica,Arial,sans-serif; font-size:16px}",
+                }}
+              />
 
               <div className="labels">
                 <label htmlFor="picture">Picture</label>
-                <input
-                  type="file"
-                  name="picture"
-                  id="imageUpload"
-                  value={picture}
-                  onChange={(e) => setPicture(e.target.value)}
-                />
+                <Upload dir="posts_picture" />
               </div>
-              <input type="submit" value="Submit" />
+              <button style={{ height: "5%", width: "100%" }} onClick={log}>
+                Submit
+              </button>
+              <Link to="/posts">Back</Link>
             </form>
           </div>
-          <Link to="/posts">Back</Link>
         </div>
         <Footer />
       </div>
