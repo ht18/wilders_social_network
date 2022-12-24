@@ -5,7 +5,7 @@ This project is a personal project, additionally to my three school projects. Ma
 
 # Technologies 
 
-* PHP/Symfony 6.1
+* PHP/Symfony 6.1 :
 `* Doctrine Bundle`
 `* Doctrine Fixtures Bundle`
 `* Doctrine Migrations Bundle`
@@ -18,7 +18,7 @@ This project is a personal project, additionally to my three school projects. Ma
 `* Lexik JWT Authentication`
 `* (Twig Bundle in the first place)`
 
-* JavaScript/React
+* JavaScript/React : 
 `* React Router Dom`
 `* Hooks : UseNavigate, UseContext, UseState, UseEffect`
 `* Axios`
