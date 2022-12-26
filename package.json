@@ -9,6 +9,7 @@
     "@types/node": "^18.11.17",
     "axios": "^1.2.1",
     "core-js": "^3.23.0",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.11",

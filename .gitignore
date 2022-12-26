@@ -13,6 +13,8 @@
 .env
 
 /src/DataFixtures/
+/mercure/
+/updates.db
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/

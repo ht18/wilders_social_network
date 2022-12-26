@@ -23,7 +23,7 @@ function Post({ post }) {
 
     const config = {
       method: "post",
-      url: `https://127.0.0.1:8000/api/news/${post.id}/edit`,
+      url: `https://127.0.0.1:8001/api/news/${post.id}/edit`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,7 +48,7 @@ function Post({ post }) {
 
     const config = {
       method: "post",
-      url: `https://127.0.0.1:8000/api/news/${post.id}/edit`,
+      url: `https://127.0.0.1:8001/api/news/${post.id}/edit`,
       headers: {
         "Content-Type": "application/json",
       },

@@ -33,7 +33,7 @@ function PostForm() {
     const headers = {
       "Content-Type": "application/json",
     };
-    const endpoint = "https://127.0.0.1:8000/api/news/";
+    const endpoint = "https://127.0.0.1:8001/api/news/";
     await axios.get(endpoint, { headers }).then((posts) => {
       setPostsList(posts.data);
     });
@@ -52,7 +52,7 @@ function PostForm() {
 
     let config = {
       method: "post",
-      url: "https://127.0.0.1:8000/api/news/new",
+      url: "https://127.0.0.1:8001/api/news/new",
       headers: {
         "Content-Type": "application/json",
       },
@@ -99,7 +99,7 @@ function PostForm() {
         </div>
         <Editor
           tinymceScriptSrc={
-            "https://127.0.0.1:8000" + "/tinymce/tinymce.min.js"
+            "https://127.0.0.1:8001" + "/tinymce/tinymce.min.js"
           }
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue=""

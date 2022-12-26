@@ -54,6 +54,7 @@ security:
     - { path: ^/api/users, roles: PUBLIC_ACCESS }
     - { path: ^/api/uploads/user_picture, roles: PUBLIC_ACCESS }
     - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api/chat, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
   security:
