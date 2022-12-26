@@ -27,7 +27,7 @@ function Upload({ dir }) {
       headers: myHeaders,
       body: formdata,
     };
-    await fetch(`https://127.0.0.1:8000/api/uploads/${dir}`, requestOptions)
+    await fetch(`https://127.0.0.1:8001/api/uploads/${dir}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         window.localStorage.setItem("image_name", result.name);

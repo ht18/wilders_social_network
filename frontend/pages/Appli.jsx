@@ -10,6 +10,7 @@ import Logout from "./Logout";
 import PostEdit from "./PostEdit";
 import Register from "./Register";
 import PrivateRoutes from "./PrivateRoutes";
+import Messages from "./Messages";
 import { AuthProvider } from "../contexts/Auth";
 function Appli() {
   return (
@@ -25,6 +26,7 @@ function Appli() {
             <Route path="/posts/:id/delete" element={<PostDelete />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/messages" element={<Messages />} />
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
         </Routes>{" "}

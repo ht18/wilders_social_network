@@ -14,7 +14,7 @@ function PostDetail() {
   useEffect(() => {
     const config = {
       method: "get",
-      url: `https://127.0.0.1:8000/api/news/${id}`,
+      url: `https://127.0.0.1:8001/api/news/${id}`,
       headers: {
         "Content-Type": "application/json",
       },

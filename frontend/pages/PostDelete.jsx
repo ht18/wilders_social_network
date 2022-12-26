@@ -9,7 +9,7 @@ function PostDelete() {
   async function handleSubmit() {
     const config = {
       method: "post",
-      url: `https://127.0.0.1:8000/api/news/${id}/delete`,
+      url: `https://127.0.0.1:8001/api/news/${id}/delete`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -17,7 +17,7 @@ function PostDelete() {
 
     await axios(config)
       .then(function (response) {
-        axios.get("https://127.0.0.1:8000/api/news/");
+        axios.get("https://127.0.0.1:8001/api/news/");
       })
       .catch(function (error) {});
   }

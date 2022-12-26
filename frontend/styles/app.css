@@ -44,3 +44,34 @@ body {
 span{
   font-weight: bold;
 }
+
+.instantMessaging{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  padding-right: 3%;
+}
+
+#conv{
+  height: 80%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  position:fixed;
+  top: 10%;
+right: 0;
+  padding-right: 2%;
+  overflow-x: scroll;
+}
+
+.alert > *{
+  color: black;
+}
+
+p {
+  word-break: break-all;
+}
+#conv > * {
+  color: black;
+}

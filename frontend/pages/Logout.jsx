@@ -7,7 +7,7 @@ function Logout() {
   if (window.localStorage.getItem("token") === "") {
     setIsAuth(false);
   }
-  window.location.href = "https://127.0.0.1:8000/logout";
+  window.location.href = "https://127.0.0.1:8001/logout";
 }
 
 export default Logout;

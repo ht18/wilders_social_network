@@ -14,6 +14,25 @@
 		{% block body %}{% endblock %}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			<script id="mercure-url">
+
+				const url = new URL("http://127.0.0.1:8000/.well-known/mercure");
+url.searchParams.append("topic", "https://127.0.0.1:8001/messages");
+const eventSource = new EventSource(url);
+eventSource.onmessage = e => {
+const data = JSON.parse (`${
+e.data
+}`);
+let date = new Date().toLocaleString();
+document.querySelector("#msg").insertAdjacentHTML('beforeend', `<div class="alert alert-success"><h3>From ${
+data.from
+}</h3><p>
+						${
+data.data
+}</p><p>${date}</p>
+</div>`)
+}
+			</script>
 		{% endblock %}
 	</body>
 </html>

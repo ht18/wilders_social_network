@@ -13,7 +13,7 @@ function PostsList() {
     const headers = {
       "Content-Type": "application/json",
     };
-    const endpoint = "https://127.0.0.1:8000/api/news/";
+    const endpoint = "https://127.0.0.1:8001/api/news/";
     axios.get(endpoint, { headers }).then((posts) => {
       setPostsList(posts.data);
     });

@@ -30,7 +30,7 @@ function PostEdit() {
   useEffect(() => {
     const config = {
       method: "get",
-      url: `https://127.0.0.1:8000/api/news/${id}`,
+      url: `https://127.0.0.1:8001/api/news/${id}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,7 +56,7 @@ function PostEdit() {
 
     const config = {
       method: "post",
-      url: `https://127.0.0.1:8000/api/news/${id}/edit`,
+      url: `https://127.0.0.1:8001/api/news/${id}/edit`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -75,7 +75,7 @@ function PostEdit() {
     const headers = {
       "Content-Type": "application/json",
     };
-    const endpoint = "https://127.0.0.1:8000/api/news/";
+    const endpoint = "https://127.0.0.1:8001/api/news/";
     await axios.get(endpoint, { headers }).then((posts) => {
       setPostsList(posts.data);
     });
@@ -89,7 +89,7 @@ function PostEdit() {
           <div className="postFormContainer">
             <form
               className="formEdit"
-              action="https://127.0.0.1:8000/posts/"
+              action="https://127.0.0.1:8001/posts/"
               method="get"
               onSubmit={handleSubmit}
             >
@@ -119,7 +119,7 @@ function PostEdit() {
               </div>
               <Editor
                 tinymceScriptSrc={
-                  "https://127.0.0.1:8000" + "/tinymce/tinymce.min.js"
+                  "https://127.0.0.1:8001" + "/tinymce/tinymce.min.js"
                 }
                 onInit={(evt, editor) => (editorRef.current = editor)}
                 initialValue={post.content}

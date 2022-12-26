@@ -13,7 +13,7 @@ function ProfileContent() {
   async function getProfile() {
     const config = {
       method: "get",
-      url: "https://127.0.0.1:8000/api/profile",
+      url: "https://127.0.0.1:8001/api/profile",
       headers: {
         "Content-Type": "application/json",
       },
