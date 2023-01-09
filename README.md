@@ -16,6 +16,7 @@ This project is a personal project, additionally to my three school projects. Ma
 `* Framework Bundle`
 `* Symfony Flex`
 `* Lexik JWT Authentication`
+`* Mercure`
 `* (Twig Bundle in the first place)`
 
 * JavaScript/React : 
@@ -44,6 +45,6 @@ I also want to add new features.
 - Possibility to update profile
 - 🟠 Possibility to upload file
 - Possibility to comment posts
-- 🟠 Instant messaging 
+- 🟢 Instant messaging 
 
 And I also want to add "Run Project" section in this README.md file.
